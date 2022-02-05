@@ -5,6 +5,8 @@ import { Text } from './Text';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import { theme } from '../../constants/Theme';
+import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 interface IHeaderProps {
   label: string;
@@ -59,4 +61,13 @@ export const Header: FC<IHeaderProps> = ({ label, wizard }) => {
       )}
     </Container>
   );
+};
+
+export const GoBack: FC = () => {
+  const navigation = useNavigation();
+  return navigation.canGoBack() ? (
+    <BackContainer onPress={() => navigation.goBack()}>
+      <Ionicons name="chevron-back" size={hp('3%')} color={theme.palette.lightPurple} />
+    </BackContainer>
+  ) : null;
 };

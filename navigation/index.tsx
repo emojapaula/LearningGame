@@ -11,6 +11,9 @@ import ImageScreen from '../screens/login/ImageScreen';
 import { RootStackParamList } from './root-navigator';
 import GameScreen from '../screens/GameScreen';
 import HomeScreen from '../screens/HomeScreen';
+import ChoosePicture from '../screens/ChoosePicture';
+import { theme } from '../constants/Theme';
+import { GoBack, Header } from '../components/reusable-components/Header';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -25,7 +28,18 @@ export default function Navigation() {
 }
 
 const screenOptionStyle = {
-  headerShown: false,
+  headerStyle: {
+    backgroundColor: theme.palette.eerieBlack,
+  },
+  contentStyle: {
+    backgroundColor: theme.palette.eerieBlack,
+  },
+  headerBackVisible: false,
+  headerShadowVisible: false,
+  headerTitleAlign: 'center',
+  headerTitle: ({ children }: { children: string }) => <Header label={children} />,
+  headerLeft: () => <GoBack />,
+  cardStyle: { backgroundColor: theme.palette.eerieBlack },
 };
 
 const AppStack = () => {
@@ -33,6 +47,7 @@ const AppStack = () => {
     <Stack.Navigator screenOptions={screenOptionStyle as {}} initialRouteName="HomeScreen">
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="GameScreen" component={GameScreen} />
+      <Stack.Screen name="ChoosePicture" component={ChoosePicture} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );
