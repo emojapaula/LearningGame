@@ -25,37 +25,54 @@ export default function ChoosePicture({ navigation }: RootStackScreenProps<'Home
   }, [navigation]);
 
   const fillArray = () => {
-    let array: string[] = [];
+    let tempArray: string[] = [];
     for (let i = 0; i < 4; i++) {
       while (true) {
         let picture = picturesForChoosing[Math.floor(Math.random() * picturesForChoosing.length)];
-        if (!array.includes(picture)) {
-          array.push(picture);
+        if (!tempArray.includes(picture)) {
+          tempArray.push(picture);
           break;
         }
       }
     }
-    return array;
+    return tempArray;
   };
 
-  const [chosenPictures, setChosenPictures] = useState<string[]>(fillArray());
+  const getPicture = () => {
+    return picturesForChoosing[Math.floor(Math.random() * picturesForChoosing.length)];
+  };
+
+  const [first, setFirst] = useState(getPicture);
+  const [second, setSecond] = useState(getPicture);
+  const [third, setThird] = useState(getPicture);
+  const [fourth, setFourth] = useState(getPicture);
+  const [chosenPictures, setChosenPictures] = useState<string[]>([first, second, third, fourth]);
+  const [expression, setExpression] = useState('');
 
   const getRandomExpression = useCallback(() => {
-    console.log(chosenPictures);
     return chosenPictures[Math.floor(Math.random() * chosenPictures.length)];
   }, [chosenPictures]);
 
-  const [expression, setExpression] = useState('');
-
   useEffect(() => {
+    console.log('first');
     setExpression(getRandomExpression());
   }, [getRandomExpression, chosenPictures]);
 
-  const checkSolution = (position: number) => {
-    console.log(position);
-    if (chosenPictures[position] === expression) {
+  const checkSolution = (picture: string) => {
+    console.log(picture);
+    switch (picture) {
+      case 'first':
+        console.log('first');
+    }
+    if (picture === expression) {
+      // setChosenPictures(fillArray());
       console.log('jej');
-      setChosenPictures(fillArray());
+    } else {
+      console.log('bed');
+      /*  let tempArray: string[] = chosenPictures;
+      tempArray[position] = 'fish';
+      setChosenPictures(tempArray);
+      console.log(chosenPictures); */
     }
   };
 
@@ -75,16 +92,16 @@ export default function ChoosePicture({ navigation }: RootStackScreenProps<'Home
         {expression}
       </Text>
       <PictureContainer>
-        <TouchableOpacity onPress={() => checkSolution(0)}>
+        <TouchableOpacity onPress={() => checkSolution(first)}>
           <EmojiCircle emoji={chosenPictures[0]} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => checkSolution(1)}>
+        <TouchableOpacity onPress={() => checkSolution(second)}>
           <EmojiCircle emoji={chosenPictures[1]} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => checkSolution(2)}>
+        <TouchableOpacity onPress={() => checkSolution(third)}>
           <EmojiCircle emoji={chosenPictures[2]} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => checkSolution(3)}>
+        <TouchableOpacity onPress={() => checkSolution(fourth)}>
           <EmojiCircle emoji={chosenPictures[3]} />
         </TouchableOpacity>
       </PictureContainer>
