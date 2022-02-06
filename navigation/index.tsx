@@ -11,6 +11,7 @@ import ImageScreen from '../screens/login/ImageScreen';
 import { RootStackParamList } from './root-navigator';
 import GameScreen from '../screens/GameScreen';
 import HomeScreen from '../screens/HomeScreen';
+import MemoryScreen from '../screens/MemoryScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -33,6 +34,7 @@ const AppStack = () => {
     <Stack.Navigator screenOptions={screenOptionStyle as {}} initialRouteName="HomeScreen">
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="GameScreen" component={GameScreen} />
+      <Stack.Screen name="MemoryScreen" component={MemoryScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );

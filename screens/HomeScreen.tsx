@@ -20,6 +20,7 @@ export default function HomeScreen({ navigation }: RootStackScreenProps<'HomeScr
         <InvaderRow />
       </HeaderContainer>
       <ArcadeButton onPress={() => navigation.push('GameScreen')} type="ternary" label="Game" fontSize={hp('5%')} />
+      <ArcadeButton onPress={() => navigation.push('MemoryScreen')} type="ternary" label="Memory" fontSize={hp('5%')} />
       <HeaderContainer>
         <InvaderRow />
       </HeaderContainer>

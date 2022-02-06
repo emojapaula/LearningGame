@@ -7,6 +7,7 @@ export type RootStackParamList = {
   ImageScreen: { student: string };
   GameScreen: undefined;
   HomeScreen: undefined;
+  MemoryScreen: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
