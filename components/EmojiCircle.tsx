@@ -1,6 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { FC } from 'react';
-import { Animated, Easing, View } from 'react-native';
+import { Animated, Easing, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components';
 import Emoji from 'react-native-emoji';
 import { theme } from '../constants/Theme';
@@ -27,7 +26,7 @@ const Circle = styled(View)`
 export const EmojiCircle: FC<IEmojiCircle> = ({ emoji, animate }) => {
   return (
     <Circle>
-      <Emoji name={emoji} style={{ fontSize: wp('22.9%') }} />
+      <Emoji name={emoji} style={{ fontSize: wp('20%') }} />
     </Circle>
   );
 };
