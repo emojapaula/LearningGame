@@ -1,7 +1,7 @@
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import React, { FC } from 'react';
-import styled from 'styled-components';
-import { Col, Grid } from 'react-native-easy-grid';
+/* import styled from 'styled-components';
+import { Col, Grid } from 'react-native-easy-grid'; */
 import Emoji from 'react-native-emoji';
 import { IMemoryCard } from '../../constants/Constants';
 
@@ -16,18 +16,20 @@ import { IMemoryCard } from '../../constants/Constants';
 const StyledImage = styled(View)`
   height: ${hp('15%')}px;
   width: ${wp('18%')}px;
-`; */
+/* `; 
 
 const GridContainer = styled(Grid)``;
 
-const StyledColumn = styled(Col)``;
+const StyledColumn = styled(Col)``; */
 
-export const MemoryCard: FC<IMemoryCard> = ({ name }) => {
+export const MemoryCard: FC<IMemoryCard> = ({ name, onPress }) => {
   return (
     <View>
       <View>
         <Emoji name={name} style={{ fontSize: 30 }} />
-        <Emoji name="black_joker" style={{ fontSize: 30 }} />
+        <TouchableOpacity onPress={onPress}>
+          <Emoji name="black_joker" style={{ fontSize: 30 }} />
+        </TouchableOpacity>
       </View>
     </View>
   );

@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
-import { StatusBar, View } from 'react-native';
+import { StatusBar } from 'react-native';
 
 import { RootStackScreenProps } from '../navigation/root-navigator';
 import { Text } from '../components/reusable-components/Text';
 import { IMemoryCard, memoryCardPictures } from '../constants/Constants';
 import Button from '../components/reusable-components/Button';
-import Emoji from 'react-native-emoji';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+// import Emoji from 'react-native-emoji';
+// import { Col, Row, Grid } from 'react-native-easy-grid';
 import { MemoryGrid } from '../components/memory/MemoryGrid';
 
 export default function MemoryScreen({ navigation }: RootStackScreenProps<'MemoryScreen'>) {
   const [cards, setCards] = useState<IMemoryCard[]>([]);
   const [turns, setTurns] = useState(0);
+  const [choiceOne, setChoiceOne] = useState<IMemoryCard | null>(null);
+  const [choiceTwo, setChoiceTwo] = useState<IMemoryCard | null>(null);
 
   //shuffle cards
-
   const shuffleCards = () => {
-    console.log('tu sam');
     const shuffledCards: IMemoryCard[] = [...memoryCardPictures, ...memoryCardPictures]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
-    console.log('tu sam dva');
     setCards(shuffledCards);
-    console.log('tu sam 3');
     setTurns(0);
+  };
+
+  const handleChoice = (card: IMemoryCard) => {
+    console.log(card);
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   };
 
   console.log(turns, cards);
@@ -32,7 +35,7 @@ export default function MemoryScreen({ navigation }: RootStackScreenProps<'Memor
       <StatusBar hidden />
       <Text>bla</Text>
       <Button label="new game" type="primary" onPress={shuffleCards} />
-      <MemoryGrid cards={cards} />
+      <MemoryGrid cards={cards} onPress={handleChoice} />
     </>
   );
 }

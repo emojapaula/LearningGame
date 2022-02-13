@@ -3,6 +3,7 @@ export type BUTTON_TYPE = 'primary' | 'ternary' | 'secondary' | 'disabled';
 export interface IMemoryCard {
   name: string;
   id?: number;
+  onPress?: () => void;
 }
 
 export const memoryCardPictures: IMemoryCard[] = [
